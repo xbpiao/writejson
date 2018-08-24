@@ -6,6 +6,9 @@
   "scripts": {
     "test": "node writejson.js -f ok.json -k keyname -v value"
   },
+  "bin": {
+    "writejsonvalue": "./bin/writejsonvalue"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/xbpiao/writejson.git"
