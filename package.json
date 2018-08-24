@@ -1,6 +1,6 @@
 {
-  "name": "writejson",
-  "version": "1.0.0",
+  "name": "writejsonvalue",
+  "version": "1.0.1",
   "description": "write json to file!",
   "main": "writejson.js",
   "scripts": {
