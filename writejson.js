@@ -5,6 +5,7 @@
 const program = require('commander');
 var path = require('path');
 var fs = require('fs')
+var urlencode = require('urlencode');
 
 program
     .version(require('./package.json').version)
@@ -12,6 +13,7 @@ program
     .option('-k, --key [string]', 'add key to json file.', 'key')
     .option('-v, --value [string]', 'add value to json file.', 'value')
     .option('-c, --create', 'create file.')
+    .option('-u, --urlencode [string]', 'encode. utf8,gbk', 'no_encode')
     .parse(process.argv);
 
 // 转换路径
@@ -36,7 +38,19 @@ if (isCheckParam === true) {
         // 读取配置
         cur_json_data = JSON.parse(fs.readFileSync(cuffilename));
     }
-    cur_json_data[program.key] = program.value;
+    var cur_encode = 'utf8';
+    if (program.urlencode) {
+        cur_encode = program.urlencode;
+        if ("no_encode" === cur_encode) {
+            cur_encode = "";
+        }
+    } 
+    if (cur_encode === "") {
+        cur_json_data[program.key] = program.value, cur_encode;
+    } else {
+        cur_json_data[program.key] = urlencode(program.value, cur_encode);
+    }
+    
     // 写入json文件
     fs.writeFileSync(cuffilename, JSON.stringify(cur_json_data));
 }
