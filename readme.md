@@ -2,7 +2,7 @@
 
 ## 用法
 
-### 1. 安全到全局环境中
+### 1. 安装到全局环境中
 
 ```
 npm install -g writejsonvalue
